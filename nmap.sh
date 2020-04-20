@@ -19,3 +19,5 @@ esac
 
 # Launchs script and maintains all variables
 . ${scriptdir}/suggester.sh
+cat ${basedir}${test_name}/nmap/${test_name}_full.nmap | grep open > ${basedir}${test_name}/notes.txt
+subl ${basedir}${test_name}
