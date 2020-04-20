@@ -17,6 +17,6 @@ cd $basedir/$test_name
 tmux new-session -d -s $test_name
 tmux new-window -d -t "$test_name" -n nmap
 tmux send-keys -t "$test_name:nmap" "bash $scriptdir/nmap.sh $test_name $ip_address $scriptdir" Enter
-tmux send-keys -t "$test_name" "openvpn /root/tools/vpn-picker/ovpn-files/hackthebox.ovpn" Enter
+tmux send-keys -t "$test_name" "openvpn /root/ctf/htb/client.ovpn" Enter
 #Passess the variables to the nmap script to start scanning
 tmux attach -t $test_name
