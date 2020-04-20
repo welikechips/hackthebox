@@ -10,7 +10,7 @@ read -r -p "Do you want to run NMAP? [y/N] " nmapresponse
 case "$nmapresponse" in
     [yY][eE][sS]|[yY])
 		#Starts nmaping all ports on box
-        echo "nmap -sC -sV $ip_address -oA ${basedir}${test_name}/nmap/${test_name}_full -p-"
+        nmap -sC -sV $ip_address -oA ${basedir}${test_name}/nmap/${test_name}_full -p-
         ;;
     *)
         
@@ -18,4 +18,4 @@ case "$nmapresponse" in
 esac
 
 # Launchs script and maintains all variables
-. $scriptdir/suggester.sh
+. ${scriptdir}/suggester.sh

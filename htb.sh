@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Description: Creates folders and setups tmux
 ### Research launching from inside another tmux
-scriptdir=`(pwd)`
+scriptdir="/root/tools/hackthebox"
 basedir="/root/ctf/htb/"
 mkdir -p $basedir
 read -r -p "What box are you working on?" test_name
@@ -16,7 +16,7 @@ cd $basedir/$test_name
 #launchs new session with box name
 tmux new-session -d -s $test_name
 tmux new-window -d -t "$test_name" -n nmap
-tmux send-keys -t "$test_name:nmap" "bash $scriptdir/nmap.sh $test_name $ip_address" Enter
+tmux send-keys -t "$test_name:nmap" "bash $scriptdir/nmap.sh $test_name $ip_address $scriptdir" Enter
 tmux send-keys -t "$test_name" "openvpn /root/tools/vpn-picker/ovpn-files/hackthebox.ovpn" Enter
 #Passess the variables to the nmap script to start scanning
 tmux attach -t $test_name
