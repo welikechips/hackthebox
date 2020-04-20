@@ -1,5 +1,4 @@
 #!/bin/bash
-
 outdir=${basedir}${test_name}
 declare -a common_ports
 common_ports=(80 139  389 443 445)
@@ -23,8 +22,7 @@ do
 	elif [[ $isopen == 445/tcp ]]; then
 		tmux new-window -d -n smb2
 		tmux send-keys -t smb2 "smbclient -L ${ip_address} -N" Enter
-
-	else 
+  else
 		continue
 	fi
 done
