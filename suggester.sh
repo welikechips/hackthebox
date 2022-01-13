@@ -18,7 +18,7 @@ do
 		tmux send-keys -t ldap "ldapsearch -x -h "${ip_address}" -s base namingcontexts" Enter
 	elif [[ $isopen == 443/tcp  ||  $isopen == 443/tcp ]]; then
 		tmux new-window -d -n dirbs
-		tmux send-keys -t dirbs "bash ${scriptdir}dirb_https.sh ${ip_address} ${outdir}" Enter
+		tmux send-keys -t dirbs "bash ${scriptdir}/dirb_https.sh ${ip_address} ${outdir}" Enter
 	elif [[ $isopen == 445/tcp ]]; then
 		tmux new-window -d -n smb2
 		tmux send-keys -t smb2 "smbclient -L ${ip_address} -N" Enter
