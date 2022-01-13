@@ -16,7 +16,7 @@ mkdir -p dirb
 export IP=${ip_address}
 export WD=${WD}
 
-server_name_found=$(grep -F "${ip_address} " /etc/hosts | awk '{ print $2 }')
+server_name_found=$(grep -F "${ip_address}" /etc/hosts | awk '{ print $2 }')
 
 if [ ! -z "$server_name_found" ]
 then
