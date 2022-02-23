@@ -12,6 +12,8 @@ cd $WD
 mkdir -p nmap
 mkdir -p burp
 mkdir -p dirb
+mkdir -p exploits
+mkdir -p loot
 
 export IP=${ip_address}
 export WD=${WD}
