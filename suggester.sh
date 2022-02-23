@@ -26,7 +26,7 @@ do
 		tmux send-keys -t dirbs "bash ${scriptdir}/dirb_https.sh ${ip_address} ${outdir}" Enter
 		tmux new-window -d -n ffuf443
 		tmux send-keys -t ffuf443 "ffuf -u https://${test_name}.htb -H \"Host: FUZZ.${test_name}.htb\" -w ${wordlist} -mc 200" Enter
-		tmux split-window -t ffuf80 -v
+		tmux split-window -t ffuf443 -v
 		tmux send-keys -t ffuf443 "ffuf -u https://${test_name} -H \"Host: FUZZ.${test_name}\" -w ${wordlist} -mc 200" Enter
 	elif [[ $isopen == 445/tcp ]]; then
 		tmux new-window -d -n smb2
