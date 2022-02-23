@@ -28,7 +28,7 @@ read -r -p "Update hosts file? [y/N] " response
 server_name=${test_name}.htb
 case "$response" in
     [yY][eE][sS]|[yY])
-        sudo echo -e "${IP}\t${server_name}" >> /etc/hosts
+        sudo echo -e "${IP}\t${server_name} ${test_name}" >> /etc/hosts
         echo "Current IP Address is ${IP}, server name is ${server_name} and current working directory is ${WD}"
         ;;
     *)
