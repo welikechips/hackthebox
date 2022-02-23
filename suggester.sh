@@ -10,6 +10,8 @@ do
 	if [[ $isopen == 80/tcp ]] ;then
 		tmux new-window -d -n dirb
 		tmux send-keys -t dirb "bash ${scriptdir}/dirb_http.sh ${ip_address} ${outdir}" Enter
+		tmux new-window -d -n ffuf80
+		tmux send-keys -t ffuf80 "ffuf -u http://${test_name}.htb -H \"Host: FUZZ.${test_name}.htb\" -w /usr/share/wordlists/SecLists/Discovery/DNS/shubs-subdomains.txt -mc 200" Enter
 	elif [[ $isopen == 139/tcp ]]; then
 		tmux new-window -d -n smb
 		tmux send-keys -t smb "smbclient -L ${ip_address} -N" Enter
@@ -19,6 +21,8 @@ do
 	elif [[ $isopen == 443/tcp  ||  $isopen == 443/tcp ]]; then
 		tmux new-window -d -n dirbs
 		tmux send-keys -t dirbs "bash ${scriptdir}/dirb_https.sh ${ip_address} ${outdir}" Enter
+		tmux new-window -d -n ffuf443
+		tmux send-keys -t ffuf443 "ffuf -u https://${test_name}.htb -H \"Host: FUZZ.${test_name}.htb\" -w /usr/share/wordlists/SecLists/Discovery/DNS/shubs-subdomains.txt -mc 200" Enter
 	elif [[ $isopen == 445/tcp ]]; then
 		tmux new-window -d -n smb2
 		tmux send-keys -t smb2 "smbclient -L ${ip_address} -N" Enter
