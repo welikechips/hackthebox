@@ -9,6 +9,6 @@ then
 	echo $command
 	echo $command | xclip -sel clip
 else
-	command="dirsearch -u http://${1} -w /usr/share/wordlists/dirb/big.txt -f -t 20 -r -e php,html,js,txt -x 403 --simple-report=$outdir/dirb/http_dirb.txt"
+	command="dirsearch -u http://${1} -w /usr/share/wordlists/dirb/big.txt -f -t 20 -r -e php,html,js,txt -x 403"
 	$command
 fi
