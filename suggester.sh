@@ -10,7 +10,7 @@ do
 	isopen=`(cat $inputfile | grep -w ${i}/tcp | cut -d " " -f1)`
 	if [[ $isopen == 80/tcp ]] ;then
 		tmux new-window -d -n dirb
-		tmux send-keys -t dirb "bash ${scriptdir}/dirb_http.sh ${ip_address} ${outdir}" Enter
+		tmux send-keys -t dirb "bash ${scriptdir}/dirb_http.sh ${test_name}.htb ${outdir}" Enter
 		tmux new-window -d -n ffuf80
 		tmux send-keys -t ffuf80 "ffuf -u http://${test_name}.htb -H \"Host: FUZZ.${test_name}.htb\" -w ${wordlist} -mc 200" Enter
 		tmux split-window -t ffuf80 -v
@@ -23,7 +23,7 @@ do
 		tmux send-keys -t ldap "ldapsearch -x -h "${ip_address}" -s base namingcontexts" Enter
 	elif [[ $isopen == 443/tcp  ||  $isopen == 443/tcp ]]; then
 		tmux new-window -d -n dirbs
-		tmux send-keys -t dirbs "bash ${scriptdir}/dirb_https.sh ${ip_address} ${outdir}" Enter
+		tmux send-keys -t dirbs "bash ${scriptdir}/dirb_https.sh ${test_name}.htb ${outdir}" Enter
 		tmux new-window -d -n ffuf443
 		tmux send-keys -t ffuf443 "ffuf -u https://${test_name}.htb -H \"Host: FUZZ.${test_name}.htb\" -w ${wordlist} -mc 200" Enter
 		tmux split-window -t ffuf443 -v
