@@ -1,7 +1,7 @@
 #!/bin/bash
 outdir=${basedir}${test_name}
 declare -a common_ports
-common_ports=(80 139  389 443 445)
+common_ports=(80 139 8080 389 443 445)
 inputfile=${basedir}${test_name}/nmap/${test_name}_full.nmap
 echo $inputfile
 wordlist="/usr/share/wordlists/SecLists/Discovery/DNS/shubs-subdomains.txt"
