@@ -9,11 +9,11 @@ then
 	read -r -p "What is the url?" url
   read -r -p "What is the fuzz?" fuzz
   read -r -p "What is the wordlist?" wordlist  
-	command="ffuf -u \"${url}\" -H \"Host: ${fuzz}\" -w ${wordlist} -mc 200""
+	command="ffuf -u \"${url}\" -H \"Host: ${fuzz}\" -w ${wordlist} -mc 200"
 	echo $command
 	echo $command | xclip -sel clip
 else
-	command="ffuf -u \"${url}\" -H \"Host: ${fuzz}\" -w ${wordlist} -mc 200""
+	command="ffuf -u \"${url}\" -H \"Host: ${fuzz}\" -w ${wordlist} -mc 200"
 	echo $command
 	$command
 fi
