@@ -19,9 +19,9 @@ do
 		tmux new-window -d -n dirb
 		tmux send-keys -t dirb "bash ${scriptdir}/dirb_http.sh ${test_name}.htb:8080 ${outdir}" Enter
 		tmux new-window -d -n ffuf8080
-		tmux send-keys -t ffuf8080 "bash ${scriptdir}/ffuf.sh http://${test_name}.htb:8080 FUZZ.${test_name}.htb ${wordlist}" Enter
+		tmux send-keys -t ffuf8080 "bash ${scriptdir}/ffuf.sh http://${test_name}.htb:8080 FUZZ.${test_name}.htb:8080 ${wordlist}" Enter
 		tmux split-window -t ffuf8080 -v
-		tmux send-keys -t ffuf8080 "bash ${scriptdir}/ffuf.sh http://${test_name}:8080 FUZZ.${test_name} ${wordlist}" Enter
+		tmux send-keys -t ffuf8080 "bash ${scriptdir}/ffuf.sh http://${test_name}:8080 FUZZ.${test_name}:8080 ${wordlist}" Enter
 	elif [[ $isopen == 139/tcp ]]; then
 		tmux new-window -d -n smb
 		tmux send-keys -t smb "smbclient -L ${ip_address} -N" Enter
