@@ -8,13 +8,13 @@ wordlist="/usr/share/wordlists/SecLists/Discovery/DNS/shubs-subdomains.txt"
 for i in "${common_ports[@]}"
 do
 	isopen=`(cat $inputfile | grep -w ${i}/tcp | cut -d " " -f1)`
-	if [[ $isopen == 80/tcp ]] ;then
+	if [[ $isopen == 80/tcp || $isopen == 8080/tcp ]] ;then
 		tmux new-window -d -n dirb
 		tmux send-keys -t dirb "bash ${scriptdir}/dirb_http.sh ${test_name}.htb ${outdir}" Enter
 		tmux new-window -d -n ffuf80
-		tmux send-keys -t ffuf80 "ffuf -u http://${test_name}.htb -H \"Host: FUZZ.${test_name}.htb\" -w ${wordlist} -mc 200" Enter
+		tmux send-keys -t ffuf80 "bash ${scriptdir}/ffuf.sh http://${test_name}.htb FUZZ.${test_name}.htb ${wordlist}" Enter
 		tmux split-window -t ffuf80 -v
-		tmux send-keys -t ffuf80 "ffuf -u http://${test_name} -H \"Host: FUZZ.${test_name}\" -w ${wordlist} -mc 200" Enter
+		tmux send-keys -t ffuf80 "bash ${scriptdir}/ffuf.sh http://${test_name} FUZZ.${test_name} ${wordlist}" Enter
 	elif [[ $isopen == 139/tcp ]]; then
 		tmux new-window -d -n smb
 		tmux send-keys -t smb "smbclient -L ${ip_address} -N" Enter
@@ -25,9 +25,9 @@ do
 		tmux new-window -d -n dirbs
 		tmux send-keys -t dirbs "bash ${scriptdir}/dirb_https.sh ${test_name}.htb ${outdir}" Enter
 		tmux new-window -d -n ffuf443
-		tmux send-keys -t ffuf443 "ffuf -u https://${test_name}.htb -H \"Host: FUZZ.${test_name}.htb\" -w ${wordlist} -mc 200" Enter
+		tmux send-keys -t ffuf443 "bash ${scriptdir}/ffuf.sh https://${test_name}.htb FUZZ.${test_name}.htb ${wordlist}" Enter
 		tmux split-window -t ffuf443 -v
-		tmux send-keys -t ffuf443 "ffuf -u https://${test_name} -H \"Host: FUZZ.${test_name}\" -w ${wordlist} -mc 200" Enter
+		tmux send-keys -t ffuf80 "bash ${scriptdir}/ffuf.sh https://${test_name} FUZZ.${test_name} ${wordlist}" Enter
 	elif [[ $isopen == 445/tcp ]]; then
 		tmux new-window -d -n smb2
 		tmux send-keys -t smb2 "smbclient -L ${ip_address} -N" Enter
