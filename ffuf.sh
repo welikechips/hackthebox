@@ -13,5 +13,12 @@ then
 	echo $command
 	echo $command | xclip -sel clip
 else
-	ffuf -u "${url}" -H "Host: ${fuzz}" -w "${wordlist}" -mc 200
+	read -r -p "Do you want to run FFUF? [y/N] " r
+	case "$r" in
+	    [yY][eE][sS]|[yY])
+		ffuf -u "${url}" -H "Host: ${fuzz}" -w "${wordlist}" -mc 200
+		;;
+	    *)
+		;;
+	esac
 fi
